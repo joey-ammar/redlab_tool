@@ -1,4 +1,11 @@
 <script setup>
+
+    import i18n from '../../../i18n';
+    const {t, locale} = i18n.global;
+    let lang = {
+        en: locale.value = 'en',
+        de: locale.value = 'de'
+    }
 </script>
 
 <template>
@@ -7,17 +14,20 @@
             <div class="main__inside d-flex align-items-center">
                 <!-- LOGO -->
                 <div class="col-md-1"><p>R.</p></div>
-                <div class="col-md-8 input-field">
-                    <input placeholder="Search tickets" /> 
+                <!-- Input Filed-->
+                <div class="col-md-7 input-field">
+                    <input :placeholder="$t('searchTicket')" /> 
                     <font-awesome-icon class="icon" icon="fa-solid fa-magnifying-glass" />
                 </div>
+                <div class="col-md-1"></div>
+                <!-- Btns-->
                 <div class="col-md-3 d-flex justify-content-around">
-                    <div class="col-md-1"><a class="btn1">Home</a></div>
-                    <div class="col-md-1"><a class="btn2">Settings</a></div>
+                    <div class="col-md-1"><a class="btn1">{{$t('Home')}} </a></div>
+                    <div class="col-md-2"><a class="btn2">{{$t('Settings')}} </a></div>
                     <div class="col-md-1">
-                        <select name="" id="">
-                            <option value="de">de</option>
-                            <option value="en">en</option>
+                        <select v-model="locale">
+                            <option :value="lang.en">en</option>
+                            <option :value="lang.de">de</option>
                         </select>
                     </div>
                 </div>     
