@@ -11,7 +11,7 @@
                     <input placeholder="Search tickets" /> 
                     <font-awesome-icon class="icon" icon="fa-solid fa-magnifying-glass" />
                 </div>
-                <div class="col-md-3 margin-auto">
+                <div class="col-md-3 d-flex justify-content-around">
                     <div class="col-md-1"><a class="btn1">Home</a></div>
                     <div class="col-md-1"><a class="btn2">Settings</a></div>
                     <div class="col-md-1">
@@ -19,7 +19,6 @@
                             <option value="de">de</option>
                             <option value="en">en</option>
                         </select>
-                        
                     </div>
                 </div>     
             </div>
@@ -28,26 +27,29 @@
 </template>
 
 <style scoped lang="scss">
+    @import '../../sass/variables.scss';
+
         .Navigation {
-            background-color: #dedfdf;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: $background-color;
+            font-family: $font;
         }
         .main__inside {
             height: 10vh;
-            width: 80%;
-            margin: 0 auto;
+            @include width-margin;
             
             p {
                 font-size: 2rem;
                 text-align: center;
+                font-weight: 800;
+                margin-top: .6rem;
             }
             .input-field {
                 position: relative;
                 input {
                     width: 100%;
                     padding: 1.5rem 1rem;
-                    border: 1px solid #c8c9c9;
-                    background-color: #c8c9c9;
+                    border: 1px solid $input-background;
+                    background-color: $input-background;
                     border-radius: 5px;
                     outline: none;
                 }
@@ -56,43 +58,35 @@
                     right: 2rem;
                     top: 40%;
                     font-size: 1.2rem;
-                    color: #969696;
+                    color:$icon-color;
                 }
             }
-            
-            .margin-auto {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-            }
+
             .btn1, .btn2 {
                 outline: none;
-                background-color: #222222;
+                background-color: $btn-color-nav;
                 color: white;
-                padding: 1.5rem 3rem;
+                padding: 1rem 2rem;
                 border-radius: 5px;
                 font-size: 1rem;
                 text-decoration: none;
                 cursor: pointer;
                 font-weight: 800;
-              
+                border: 1px solid $btn-color-nav;
+               
             }
+
             .btn2 {
                 background-color: transparent;
-                color: #222222;
-                border: 1px solid #222222;
+                color: $btn-color-nav;
             }
+
             select {
                 background-color: none;
                 border:0;
                 background:none;
                 outline: none;
                 font-size: 1.4rem;
-                * {
-                    border:0;
-                    background:none;
-                    -webkit-appearance: none;
-                }
             }
         }
 </style>
