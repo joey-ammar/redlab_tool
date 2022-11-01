@@ -16,9 +16,15 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faMagnifyingGlass, faFlask } from '@fortawesome/free-solid-svg-icons'
+/* Pinia */
+import { createPinia } from 'pinia'
+const pinia = createPinia()
 
 /* variable App  */
 const app = createApp(App)
+
+/* Pinia */
+app.use(pinia)
 /* Use Boostrap */
 app.use(BootstrapVue3)
 /* Use thr router */
