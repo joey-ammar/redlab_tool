@@ -12,7 +12,11 @@
         <div class="row">
             <div class="main__inside d-flex align-items-center">
                 <!-- LOGO -->
-                <div class="col-md-1"><p>R.</p></div>
+                <div class="col-md-1">
+                    <p>
+                        R / L
+                    </p>
+                </div>
                 <!-- Input Filed-->
                 <div class="col-md-7 input-field">
                     <input :placeholder="$t('searchTicket')" /> 
@@ -51,7 +55,10 @@
             @include width-margin;
             
             p {
-                font-size: 2rem;
+                border: 2px solid #222;
+                display: inline-block;
+                padding: .3rem .5rem;
+                font-size: 1.5rem;
                 font-weight: 800;
                 margin-top: .6rem;
             }

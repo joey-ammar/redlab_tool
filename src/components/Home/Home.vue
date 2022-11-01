@@ -1,4 +1,27 @@
 <script setup>
+          import {ref, computed, reactive, nextTick} from 'vue';
+
+          const form = reactive({
+            ticket: '#21423',
+            from: 'Joey',
+            date: '',
+            description: '',
+            tags: ['hello', 'world']
+          })
+         
+          const date = (e) => {
+            form.date = e.target.value;
+          }
+
+          const description = (e) => {
+            form.description = e.target.value
+          }
+
+          const onSubmit = (e) => {
+            e.preventDefault();
+            console.log(form.date);
+            console.log(form.description);
+          }
 
 </script>
 <template>
@@ -6,27 +29,45 @@
         <div class="inside">
             <div>
                 <b-form>
-                    <b-form-group id="input-group-1" label="Email address:" label-for="input-1" description="We'll never share your email with anyone else.">
-                        <b-form-input id="input-1" type="email" placeholder="Enter email" required ></b-form-input>
-                    </b-form-group>
+                    <div class="row">
 
-                    <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-                        <b-form-input id="input-2"  placeholder="Enter name" required></b-form-input>
-                    </b-form-group>
+                        <div class="col-md-6">
+                            <b-form-group id="input-group-1" label="Ticket Number" label-for="input-1">
+                                <input type="string" :value="form.ticket" disabled required />
+                            </b-form-group>
+                        </div>
 
-                    <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-                        <b-form-select id="input-3"   required></b-form-select>
-                    </b-form-group>
+                        <div class="col-md-6">
+                            <b-form-group id="input-group-2" label="From" label-for="input-1">
+                                <input type="string" :value="form.from" disabled required />
+                            </b-form-group>
+                        </div>
+                    </div>
 
-                    <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-                        <b-form-checkbox-group id="checkboxes-4" :aria-describedby="ariaDescribedby">
-                        <b-form-checkbox value="me">Check me out</b-form-checkbox>
-                        <b-form-checkbox value="that">Check that out</b-form-checkbox>
-                        </b-form-checkbox-group>
-                    </b-form-group>
+                    <div class="row">
 
-                    <b-button type="submit" variant="primary">Submit</b-button>
-                    <b-button type="reset" variant="danger">Reset</b-button>
+                        <div class="col-md-6">
+                            <b-form-group id="input-group-2" label="Date" label-for="input-1">
+                                <input type="string" @input="date" :value="form.date" required />
+                            </b-form-group>
+                        </div>
+
+                        <div class="col-md-6">
+                            <b-form-group id="input-group-1" label="Description" label-for="input-1">
+                                <input type="string" @input="description" :value="form.description" required />
+                            </b-form-group>
+                        </div>
+
+                    </div>
+
+                   
+                    <div class="row">
+                        <div class="col-md-12 mt-10 text-center">
+                             <b-button @click="onSubmit" class="save" type="submit" >Submit</b-button>
+                             <b-button @click="onReset" class="cancel" type="reset">Reset</b-button>
+                        </div>
+                    </div>
+
                 </b-form>
             </div>
         </div>
@@ -37,12 +78,44 @@
 
     .main {
         background-color: $background-color;
-        min-height: 70vh;
+        min-height: 60vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         .inside {
             @include width-margin;
+        }
+        input, select {
+            width: 100%;
+            padding: 1.5rem 1rem;
+            border: 1px solid $input-background;
+            background-color: $input-background;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1.2rem;
+        }
+        #input-group-1,
+        #input-group-2 {
+            font-weight: 800;
+        }
+        .save, 
+        .cancel {
+            outline: none;
+            background-color: $btn-color-nav;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 800;
+            border: 1px solid $btn-color-nav;
+        }
+        .save {
+            margin-right: 2rem;
+        }
+        .cancel {
+            background-color: transparent;
+            color: $btn-color-nav;
         }
     }
 
