@@ -4,6 +4,7 @@
 
 <template>
     <NavigationVue />
+    <router-view />
 </template>
 
 <style scoped>

@@ -6,6 +6,8 @@ import './style.css'
 import App from './App.vue'
 /* Import the translation */
 import i18n from '../i18n';
+/* Import the router */
+import router from './router/index'
 /* Bootstrap */
 import BootstrapVue3 from 'bootstrap-vue-3'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -19,6 +21,8 @@ import { faMagnifyingGlass, faFlask } from '@fortawesome/free-solid-svg-icons'
 const app = createApp(App)
 /* Use Boostrap */
 app.use(BootstrapVue3)
+/* Use thr router */
+app.use(router)
 library.add(faMagnifyingGlass, faFlask)
 app.component('font-awesome-icon', FontAwesomeIcon)
 /* Use the translation */

@@ -1,5 +1,4 @@
 <script setup>
-
     import i18n from '../../../i18n';
     const {t, locale} = i18n.global;
     let lang = {
@@ -22,8 +21,12 @@
                 <div class="col-md-1"></div>
                 <!-- Btns-->
                 <div class="col-md-3 d-flex justify-content-around">
-                    <div class="col-md-1"><a class="btn1">{{$t('Home')}} </a></div>
-                    <div class="col-md-2"><a class="btn2">{{$t('Settings')}} </a></div>
+                    <div class="col-md-1">
+                        <router-link to="/"><a class="btn1">{{$t('Home')}} </a></router-link>
+                    </div>
+                    <div class="col-md-2">
+                        <router-link to="/settings"><a class="btn2">{{$t('Settings')}} </a></router-link>
+                    </div>
                     <div class="col-md-1">
                         <select v-model="locale">
                             <option :value="lang.en">en</option>
@@ -49,7 +52,6 @@
             
             p {
                 font-size: 2rem;
-                text-align: center;
                 font-weight: 800;
                 margin-top: .6rem;
             }
@@ -79,11 +81,13 @@
                 padding: 1rem 2rem;
                 border-radius: 5px;
                 font-size: 1rem;
-                text-decoration: none;
                 cursor: pointer;
                 font-weight: 800;
                 border: 1px solid $btn-color-nav;
-               
+            }
+
+            a {
+                text-decoration: none;
             }
 
             .btn2 {
