@@ -23,6 +23,28 @@
             console.log(form.description);
           }
 
+          let selectedTeam =  ref(null);
+          let selectedPrio =  ref(null);
+          let teams = reactive(
+            [
+                {team: 'Team 1'},
+                {team: 'Team 2'},
+                {team: 'Team 3'},
+                {team: 'Team 4'},
+                {team: 'Team 5'}
+             ]
+          )
+          let prios = reactive(
+            [
+                {prio: 'prio 1'},
+                {prio: 'prio 2'},
+                {prio: 'prio 3'},
+                {prio: 'prio 4'},
+                {prio: 'prio 5'}
+             ]
+          )
+
+
 </script>
 <template>
    <div class="main">
@@ -60,7 +82,25 @@
 
                     </div>
 
-                   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="team">Team</label>
+                            <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
+                        </div>  
+                        <div class="col-md-6">
+                            <label for="team">Prio</label>
+                            <Dropdown id="team" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="prio" placeholder="Select a Prio" />
+                        </div> 
+                    </div>
+
+                    <div class="row project">
+                        <div class="col-md-6">
+                            <label for="team">Project</label>
+                            <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
+                        </div>  
+                       
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12 mt-10 text-center">
                              <b-button @click="onSubmit" class="save" type="submit" >Submit</b-button>
@@ -85,7 +125,7 @@
         .inside {
             @include width-margin;
         }
-        input, select {
+        input, select, .label-team {
             width: 100%;
             padding: 1.5rem 1rem;
             border: 1px solid $input-background;
@@ -109,6 +149,7 @@
             cursor: pointer;
             font-weight: 800;
             border: 1px solid $btn-color-nav;
+            margin-top: 3rem;
         }
         .save {
             margin-right: 2rem;
@@ -117,6 +158,15 @@
             background-color: transparent;
             color: $btn-color-nav;
         }
+        label {
+            margin-bottom: .5rem;
+            font-weight: 800;
+        }
+
+        .project {
+            margin-top: 1rem;
+        }
+        
     }
 
 </style>
