@@ -25,6 +25,10 @@
 
           let selectedTeam =  ref(null);
           let selectedPrio =  ref(null);
+          let selectedProject = ref(null);
+
+          let prio1 = ref('');
+
           let teams = reactive(
             [
                 {team: 'Team 1'},
@@ -36,14 +40,28 @@
           )
           let prios = reactive(
             [
-                {prio: 'prio 1'},
-                {prio: 'prio 2'},
-                {prio: 'prio 3'},
-                {prio: 'prio 4'},
-                {prio: 'prio 5'}
+                {prio1: 'prio 1'},
+                {prio2: 'prio 2'},
+                {prio3: 'prio 3'},
+                {prio4: 'prio 4'},
+                {prio5: 'prio 5'}
              ]
           )
 
+          let projects = reactive([
+                {project: 'project 1'},
+                {project: 'project 2'},
+                {project: 'project 3'},
+                {project: 'project 4'},
+                {project: 'prio 5'}
+          ])
+
+          prios.forEach(e => {
+            console.log(e.prio1)
+            prio1.value = e.prio1
+          })
+
+          console.log(prio1.value)
 
 </script>
 <template>
@@ -89,16 +107,35 @@
                         </div>  
                         <div class="col-md-6">
                             <label for="team">Prio</label>
-                            <Dropdown id="team" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="prio" placeholder="Select a Prio" />
+                            <SelectButton v-model="prios" :options="prios" optionLabel="prio">
+                                <template #option="slotProps">
+                                    <div class="car-option">
+                                        <span class="select-prio">{{slotProps.option.prios}}</span>
+                                    </div>
+                                </template>
+                            </SelectButton>
                         </div> 
                     </div>
 
                     <div class="row project">
                         <div class="col-md-6">
                             <label for="team">Project</label>
-                            <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
+                            <Dropdown class="label-team-two" v-model="selectedProject" :options="projects" optionLabel="project" :filter="true" placeholder="Select a project" :showClear="true">
+                                <template #value="slotProps">
+                                    <div class="p-dropdown-car-value" v-if="slotProps.value">
+                                        <span>{{slotProps.value.project}}</span>
+                                    </div>
+                                    <span v-else>
+                                        {{slotProps.placeholder}}
+                                    </span>
+                                </template>
+                                <template  #option="slotProps">
+                                    <div class="p-dropdown-car-option okay">
+			                            <span>{{slotProps.option.project}}</span>
+                                    </div>
+                                </template>
+                            </Dropdown>
                         </div>  
-                       
                     </div>
 
                     <div class="row">
@@ -115,7 +152,6 @@
 </template>
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
-
     .main {
         background-color: $background-color;
         min-height: 60vh;
@@ -127,12 +163,24 @@
         }
         input, select, .label-team {
             width: 100%;
-            padding: 1.5rem 1rem;
+            padding: 1.5rem 0rem 1.5rem 1rem;
             border: 1px solid $input-background;
             background-color: $input-background;
             border-radius: 5px;
             outline: none;
             font-size: 1.2rem;
+        }
+        .label-team-two {
+            width: 100%;
+            border: 1px solid $input-background;
+            background-color: $input-background;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1.2rem;
+            padding: 1.5rem 0rem 1.5rem 1rem;
+            i {
+                border: 1px solid red!important;
+            }
         }
         #input-group-1,
         #input-group-2 {
@@ -165,6 +213,15 @@
 
         .project {
             margin-top: 1rem;
+        }
+
+        .select-prio{
+            width: 100%;
+            height: 100%;
+            margin: 0rem 1rem;
+        }
+        .car-option  {
+            background-color: green;
         }
         
     }

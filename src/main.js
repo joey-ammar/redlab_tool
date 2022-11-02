@@ -19,8 +19,7 @@ import 'primevue/resources/themes/saga-blue/theme.css'
 import 'primeicons/primeicons.css'
 import '/node_modules/primeflex/primeflex.css'
 import Dropdown from 'primevue/dropdown';
-import Button from 'primevue/button' 
-
+import SelectButton from 'primevue/selectbutton';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faMagnifyingGlass, faFlask , faBars, faX} from '@fortawesome/free-solid-svg-icons'
@@ -36,5 +35,6 @@ app.use(router)
 library.add(faMagnifyingGlass, faFlask, faBars, faX)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.component('Dropdown', Dropdown)
+app.component('SelectButton', SelectButton)
 app.use(i18n);
 app.mount('#app')
