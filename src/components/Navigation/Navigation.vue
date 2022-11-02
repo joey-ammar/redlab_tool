@@ -1,10 +1,6 @@
 <script setup>
     import i18n from '../../../i18n';
-    const {t, locale} = i18n.global;
-    let lang = {
-        en: locale.value = 'en',
-        de: locale.value = 'de'
-    }
+    const {locale} = i18n.global;
 </script>
 
 <template>
@@ -33,8 +29,8 @@
                     </div>
                     <div class="col-md-1">
                         <select v-model="locale">
-                            <option :value="lang.en">en</option>
-                            <option :value="lang.de">de</option>
+                            <option value="en">en</option>
+                            <option value="de">de</option>
                         </select>
                     </div>
                 </div>     
