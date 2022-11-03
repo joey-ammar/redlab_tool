@@ -1,14 +1,14 @@
-/*Colors*/
+
 $background-color: #dedfdf;
-/*Font Family*/
+
 $font: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-/*Input Background*/
+
 $input-background: #c8c9c9;
-/*icon color*/
+
 $icon-color: #969696;
-/*Btn color*/
+
 $btn-color-nav: #222222;
-/*Width*/
+
 @mixin width-margin {
     width: 80%;
     margin: 0 auto;
