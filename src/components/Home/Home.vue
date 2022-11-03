@@ -1,5 +1,7 @@
 <script setup>
           import {ref, computed, reactive, nextTick} from 'vue';
+          import error from "../Error/Error.vue";
+          import RadioButton from 'primevue/radiobutton';
 
           const form = reactive({
             ticket: '#21423',
@@ -27,7 +29,6 @@
           let selectedPrio =  ref(null);
           let selectedProject = ref(null);
 
-          let prio1 = ref('');
 
           let teams = reactive(
             [
@@ -38,30 +39,37 @@
                 {team: 'Team 5'}
              ]
           )
-          let prios = reactive(
-            [
-                {prio1: 'prio 1'},
-                {prio2: 'prio 2'},
-                {prio3: 'prio 3'},
-                {prio4: 'prio 4'},
-                {prio5: 'prio 5'}
-             ]
-          )
+            let  cities = reactive([
+              {name: 'New York', code: 'NY'},
+              {name: 'Rome', code: 'RM'},
+              {name: 'London', code: 'LDN'},
+              {name: 'Istanbul', code: 'IST'},
+              {name: 'Paris', code: 'PRS'}
+            ])
 
           let projects = reactive([
                 {project: 'project 1'},
                 {project: 'project 2'},
                 {project: 'project 3'},
                 {project: 'project 4'},
-                {project: 'prio 5'}
           ])
 
-          prios.forEach(e => {
-            console.log(e.prio1)
-            prio1.value = e.prio1
-          })
+          let prios = reactive(
+          [
+            {prio: 'prio 1'},
+            {prio: 'prio 2'},
+            {prio: 'prio 3'},
+            {prio: 'prio 4'},
+            {prio: 'prio 5'}
+          ]
+          )
 
-          console.log(prio1.value)
+          let  selected = 'A';
+          let options = [
+            { item: 'A', name: 'Geplant' },
+            { item: 'B', name: 'ungeplant' },
+
+          ]
 
 </script>
 <template>
@@ -85,57 +93,60 @@
                     </div>
 
                     <div class="row">
-
-                        <div class="col-md-6">
-                            <b-form-group id="input-group-2" label="Date" label-for="input-1">
-                                <input type="string" @input="date" :value="form.date" required />
-                            </b-form-group>
-                        </div>
-
                         <div class="col-md-6">
                             <b-form-group id="input-group-1" label="Description" label-for="input-1">
-                                <input type="string" @input="description" :value="form.description" required />
+                                <textarea type="string" @input="description" :value="form.description" required />
                             </b-form-group>
                         </div>
 
+                      <div class="col-md-6">
+                        <label for="team">Team</label>
+                        <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
+                      </div>
                     </div>
 
                     <div class="row">
+
+                      <div class="col-md-6">
+                        <label for="team">Project</label>
+                        <Dropdown class="label-team-two" v-model="selectedProject" :options="projects" optionLabel="project" :filter="true" placeholder="Select a project" :showClear="true">
+                          <template #value="slotProps">
+                            <div class="p-dropdown-car-value" v-if="slotProps.value">
+                              <span>{{slotProps.value.project}}</span>
+                            </div>
+                            <span v-else>
+                                        {{slotProps.placeholder}}
+                                    </span>
+                          </template>
+                          <template  #option="slotProps">
+                            <div class="p-dropdown-car-option okay">
+                              <span>{{slotProps.option.project}}</span>
+                            </div>
+                          </template>
+                        </Dropdown>
+                      </div>
+
+
                         <div class="col-md-6">
-                            <label for="team">Team</label>
-                            <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
-                        </div>  
-                        <div class="col-md-6">
-                            <label for="team">Prio</label>
-                            <SelectButton v-model="prios" :options="prios" optionLabel="prio">
-                                <template #option="slotProps">
-                                    <div class="car-option">
-                                        <span class="select-prio">{{slotProps.option.prios}}</span>
-                                    </div>
-                                </template>
-                            </SelectButton>
-                        </div> 
+                          <label for="team">Priority</label>
+                          <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="prio" placeholder="Select priority" />
+                        </div>
+
                     </div>
 
                     <div class="row project">
-                        <div class="col-md-6">
-                            <label for="team">Project</label>
-                            <Dropdown class="label-team-two" v-model="selectedProject" :options="projects" optionLabel="project" :filter="true" placeholder="Select a project" :showClear="true">
-                                <template #value="slotProps">
-                                    <div class="p-dropdown-car-value" v-if="slotProps.value">
-                                        <span>{{slotProps.value.project}}</span>
-                                    </div>
-                                    <span v-else>
-                                        {{slotProps.placeholder}}
-                                    </span>
-                                </template>
-                                <template  #option="slotProps">
-                                    <div class="p-dropdown-car-option okay">
-			                            <span>{{slotProps.option.project}}</span>
-                                    </div>
-                                </template>
-                            </Dropdown>
-                        </div>  
+
+                      <div class="col-md-6">
+                        <label for="team">Status</label>
+                        <b-form-radio-group
+                            v-model="selected"
+                            :options="options"
+                            class="mb-3"
+                            value-field="item"
+                            text-field="name"
+                            disabled-field="notEnabled"
+                        ></b-form-radio-group>
+                      </div>
                     </div>
 
                     <div class="row">
@@ -143,6 +154,7 @@
                              <b-button @click="onSubmit" class="save" type="submit" >Submit</b-button>
                              <b-button @click="onReset" class="cancel" type="reset">Reset</b-button>
                         </div>
+
                     </div>
 
                 </b-form>
@@ -152,6 +164,11 @@
 </template>
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
+
+    .kkk {
+      padding: 0rem 2rem;
+      font-size: 1.3rem;
+    }
     .main {
         background-color: $background-color;
         min-height: 60vh;
@@ -161,7 +178,7 @@
         .inside {
             @include width-margin;
         }
-        input, select, .label-team {
+        input, select, .label-team, textarea {
             width: 100%;
             padding: 1.5rem 0rem 1.5rem 1rem;
             border: 1px solid $input-background;
@@ -170,6 +187,9 @@
             outline: none;
             font-size: 1.2rem;
         }
+         textarea {
+           padding: 1rem 0rem 1rem 1rem;
+         }
         .label-team-two {
             width: 100%;
             border: 1px solid $input-background;
@@ -220,9 +240,15 @@
             height: 100%;
             margin: 0rem 1rem;
         }
-        .car-option  {
-            background-color: green;
-        }
+
+
+      .green {
+        background: green;
+      }
+      .blue {
+        background: blue!important;
+        padding: 1rem;
+      }
         
     }
 

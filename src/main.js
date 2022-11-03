@@ -20,6 +20,9 @@ import 'primeicons/primeicons.css'
 import '/node_modules/primeflex/primeflex.css'
 import Dropdown from 'primevue/dropdown';
 import SelectButton from 'primevue/selectbutton';
+import RadioButton from 'primevue/radiobutton';
+
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faMagnifyingGlass, faFlask , faBars, faX} from '@fortawesome/free-solid-svg-icons'
@@ -36,5 +39,6 @@ library.add(faMagnifyingGlass, faFlask, faBars, faX)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.component('Dropdown', Dropdown)
 app.component('SelectButton', SelectButton)
+app.component('RadioButton', RadioButton)
 app.use(i18n);
 app.mount('#app')
