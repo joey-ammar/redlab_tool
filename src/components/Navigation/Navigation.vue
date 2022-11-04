@@ -20,7 +20,7 @@
             <div class="main__inside d-flex align-items-center">
                 <div class="col-1">
                     <p>
-                        R / L
+                        Red Lab
                     </p>
                 </div>
                 <div class="col-7 input-field">
@@ -67,30 +67,26 @@
 
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
-
         .Navigation {
-            background-color: $background-color;
             font-family: $font;
         }
         .main__inside {
             height: 10vh;
             @include width-margin;
-            
             p {
-                border: 2px solid #222;
                 display: inline-block;
-                padding: .3rem .5rem;
                 font-size: 1.5rem;
                 font-weight: 800;
                 margin-top: .6rem;
+                color: #4B6587;
             }
             .input-field {
                 position: relative;
                 input {
                     width: 100%;
                     padding: 1.5rem 1rem;
-                    border: 1px solid $input-background;
-                    background-color: $input-background;
+                    border: 1px solid #C8C6C6;
+                    background-color: #C8C6C6;
                     border-radius: 5px;
                     outline: none;
                 }
@@ -104,34 +100,19 @@
             }
 
             .btn1, .btn2 {
-                outline: none;
-                background-color: $btn-color-nav;
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 5px;
+                color: #4B6587;
                 font-size: 1rem;
-                cursor: pointer;
                 font-weight: 800;
-                border: 1px solid $btn-color-nav;
-            }
-
-            a {
-                text-decoration: none;
-            }
-
-            .btn2 {
-                background-color: transparent;
-                color: $btn-color-nav;
             }
 
             select {
-                background-color: none;
+                color: #4B6587;
                 border:0;
                 background:none;
                 outline: none;
                 font-size: 1.4rem;
             }
-            
+
         }
 
         .bars, 

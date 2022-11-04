@@ -2,5 +2,16 @@
 {
     "Home": "Home",
     "Settings": "Settings",
-    "searchTicket": "Search tickets"
+    "searchTicket": "Search tickets",
+    "ticketNumber": "Ticket Number",
+    "from": "From",
+    "description": "Description",
+    "team": "Team",
+    "project": "Project",
+    "priority": "Priority",
+    "status": "Status",
+    "save": "Save",
+    "cancel": "Cancel",
+    "planned": "Planned",
+    "unplanned" : "Unplanned"
 }

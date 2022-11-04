@@ -2,6 +2,8 @@
           import {ref, computed, reactive, nextTick} from 'vue';
           import error from "../Error/Error.vue";
           import RadioButton from 'primevue/radiobutton';
+          import i18n from '../../../i18n';
+          const {locale, t} = i18n.global;
 
           const form = reactive({
             ticket: '#21423',
@@ -10,10 +12,6 @@
             description: '',
             tags: ['hello', 'world']
           })
-         
-          const date = (e) => {
-            form.date = e.target.value;
-          }
 
           const description = (e) => {
             form.description = e.target.value
@@ -39,13 +37,6 @@
                 {team: 'Team 5'}
              ]
           )
-            let  cities = reactive([
-              {name: 'New York', code: 'NY'},
-              {name: 'Rome', code: 'RM'},
-              {name: 'London', code: 'LDN'},
-              {name: 'Istanbul', code: 'IST'},
-              {name: 'Paris', code: 'PRS'}
-            ])
 
           let projects = reactive([
                 {project: 'project 1'},
@@ -66,9 +57,8 @@
 
           let  selected = 'A';
           let options = [
-            { item: 'A', name: 'Geplant' },
-            { item: 'B', name: 'ungeplant' },
-
+            { item: 'A', name: t('planned') },
+            { item: 'B', name: t('unplanned') },
           ]
 
 </script>
@@ -80,13 +70,13 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <b-form-group id="input-group-1" label="Ticket Number" label-for="input-1">
+                            <b-form-group id="input-group-1" :label="$t('ticketNumber')" label-for="input-1">
                                 <input type="string" :value="form.ticket" disabled required />
                             </b-form-group>
                         </div>
 
                         <div class="col-md-6">
-                            <b-form-group id="input-group-2" label="From" label-for="input-1">
+                            <b-form-group id="input-group-2" :label="$t('from')" label-for="input-1">
                                 <input type="string" :value="form.from" disabled required />
                             </b-form-group>
                         </div>
@@ -94,13 +84,13 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <b-form-group id="input-group-1" label="Description" label-for="input-1">
+                            <b-form-group id="input-group-1" :label="$t('description')" label-for="input-1">
                                 <textarea type="string" @input="description" :value="form.description" required />
                             </b-form-group>
                         </div>
 
                       <div class="col-md-6">
-                        <label for="team">Team</label>
+                        <label for="team">{{$t('team')}}</label>
                         <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
                       </div>
                     </div>
@@ -108,7 +98,7 @@
                     <div class="row">
 
                       <div class="col-md-6">
-                        <label for="team">Project</label>
+                        <label for="team">{{$t('project')}}</label>
                         <Dropdown class="label-team-two" v-model="selectedProject" :options="projects" optionLabel="project" :filter="true" placeholder="Select a project" :showClear="true">
                           <template #value="slotProps">
                             <div class="p-dropdown-car-value" v-if="slotProps.value">
@@ -128,7 +118,7 @@
 
 
                         <div class="col-md-6">
-                          <label for="team">Priority</label>
+                          <label for="team">{{$t('priority')}}</label>
                           <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="prio" placeholder="Select priority" />
                         </div>
 
@@ -137,7 +127,7 @@
                     <div class="row project">
 
                       <div class="col-md-6">
-                        <label for="team">Status</label>
+                        <label for="team">{{$t('status')}}</label>
                         <b-form-radio-group
                             v-model="selected"
                             :options="options"
@@ -151,8 +141,8 @@
 
                     <div class="row">
                         <div class="col-md-12 mt-10 text-center">
-                             <b-button @click="onSubmit" class="save" type="submit" >Submit</b-button>
-                             <b-button @click="onReset" class="cancel" type="reset">Reset</b-button>
+                             <b-button @click="onSubmit" class="save" type="submit" >{{$t('submit')}}</b-button>
+                             <b-button @click="onReset" class="cancel" type="reset">{{$t('cancel')}}</b-button>
                         </div>
 
                     </div>
@@ -165,58 +155,46 @@
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
 
-    .kkk {
-      padding: 0rem 2rem;
-      font-size: 1.3rem;
-    }
     .main {
-        background-color: $background-color;
-        min-height: 60vh;
+        margin-top: 10rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         .inside {
             @include width-margin;
         }
-        input, select, .label-team, textarea {
-            width: 100%;
-            padding: 1.5rem 0rem 1.5rem 1rem;
-            border: 1px solid $input-background;
-            background-color: $input-background;
-            border-radius: 5px;
-            outline: none;
-            font-size: 1.2rem;
-        }
-         textarea {
-           padding: 1rem 0rem 1rem 1rem;
-         }
+        input, select, .label-team, textarea,
         .label-team-two {
             width: 100%;
-            border: 1px solid $input-background;
-            background-color: $input-background;
+            padding: 1.5rem 0rem 1.5rem 1rem;
+            border: 1px solid #DFDFDE;
+            background-color: #DFDFDE;
             border-radius: 5px;
             outline: none;
             font-size: 1.2rem;
-            padding: 1.5rem 0rem 1.5rem 1rem;
-            i {
-                border: 1px solid red!important;
-            }
         }
+
+        textarea {
+            padding: 1rem 0rem 1rem 1rem;
+        }
+
         #input-group-1,
         #input-group-2 {
             font-weight: 800;
+            color: #4B6587;
         }
+
         .save, 
         .cancel {
             outline: none;
-            background-color: $btn-color-nav;
+            background-color: #4B6587;
             color: white;
             padding: 1rem 2rem;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
             font-weight: 800;
-            border: 1px solid $btn-color-nav;
+            border: 1px solid #4B6587;
             margin-top: 3rem;
         }
         .save {
@@ -224,11 +202,12 @@
         }
         .cancel {
             background-color: transparent;
-            color: $btn-color-nav;
+            color: #4B6587;
         }
         label {
             margin-bottom: .5rem;
             font-weight: 800;
+            color: #4B6587;
         }
 
         .project {

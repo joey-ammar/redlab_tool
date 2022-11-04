@@ -7,6 +7,27 @@
     <router-view />
 </template>
 
-<style scoped>
+<style lang="scss">
+/*Basic Reset*/
+    *,
+    *::after,
+    *::before {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    /*1rem = 16px*/
+    html {
+        font-size: 62.5%;
+
+    }
+    body {
+        background-color: #F7F6F2!important;
+    }
+
+    a {
+        text-decoration: none!important;
+    }
 
 </style>

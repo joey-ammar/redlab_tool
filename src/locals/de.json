@@ -2,5 +2,16 @@
 {
     "Home": "Home",
     "Settings": "Einstellungen",
-    "searchTicket": "Tickets suchen"
+    "searchTicket": "Tickets suchen",
+    "ticketNumber": "Ticket-Nummer",
+    "from": "Von",
+    "description": "Beschreibung",
+    "team": "Team",
+    "project": "Projekt",
+    "priority": "Priorität",
+    "status": "Status",
+    "save": "Speichern",
+    "cancel": "Stornieren",
+    "planned": "geplant",
+    "unplanned" : "ungeplant"
 }
