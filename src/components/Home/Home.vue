@@ -1,10 +1,9 @@
 <script setup>
-          import {ref, computed, reactive, nextTick} from 'vue';
-          import error from "../Error/Error.vue";
-          import RadioButton from 'primevue/radiobutton';
-          import i18n from '../../../i18n';
-          const {locale, t} = i18n.global;
-
+          import {ref, reactive} from 'vue';
+          import i18n from '../../i18n.js';
+          const {t} = i18n.global;
+          import Form from "../Form/Form.vue"
+          import Button from "../Button/Button.vue"
           const form = reactive({
             ticket: '#21423',
             from: 'Joey',
@@ -13,36 +12,83 @@
             tags: ['hello', 'world']
           })
 
-          const description = (e) => {
-            form.description = e.target.value
-          }
-
-          const onSubmit = (e) => {
-            e.preventDefault();
-            console.log(form.date);
-            console.log(form.description);
-          }
-
           let selectedTeam =  ref(null);
           let selectedPrio =  ref(null);
           let selectedProject = ref(null);
 
-
           let teams = reactive(
             [
-                {team: 'Team 1'},
-                {team: 'Team 2'},
-                {team: 'Team 3'},
-                {team: 'Team 4'},
-                {team: 'Team 5'}
+                {team: 'Team::Abrechnung'},
+                {team: 'Team::Controlcenter'},
+                {team: 'Team::Kreditkarte'},
+                {team: 'Team::Senacor'},
+                {team: 'Team::Sepa'}
              ]
           )
 
           let projects = reactive([
-                {project: 'project 1'},
-                {project: 'project 2'},
-                {project: 'project 3'},
-                {project: 'project 4'},
+                {project: 'Project::Abrechnung'},
+                {project: 'Project::Banking'},
+                {project: 'Project::Batchimport'},
+                {project: 'Project::Controlcenter'},
+                {project: 'Project::Core'},
+                {project: 'Project::Deploytool'},
+                {project: 'Project::DRK'},
+                {project: 'Project::EWS'},
+                {project: 'Project::Exportservice'},
+                {project: 'Project::HandyPay'},
+                {project: 'Project::HPA'},
+                {project: 'Project::Kreditkarte'},
+                {project: 'Project::Lastschrift'},
+                {project: 'Project::Monolith'},
+                {project: 'Project::Non-Coding'},
+                {project: 'Project::Office-Support'},
+                {project: 'Project::Paydirekt'},
+                {project: 'Project::Paypal'},
+                {project: 'Project::Paysafecard'},
+                {project: 'Project::PCI/Kreditkarte'},
+                {project: 'Project::PCI/Proxy'},
+                {project: 'Project::PCI/Vault'},
+                {project: 'Project::PCI/SepaUi'},
+                {project: 'Project::PCI/Sessionsearch'},
+                {project: 'Project::PCI/Sessiontransfer'},
+                {project: 'Project::PCI/Soap-WS'},
+                {project: 'Project::Sofort'},
+                {project: 'Project::Vorkasse'},
+                {project: 'Project::WHH'},
+          ])
+
+
+          let projectsNames = reactive([
+              {project: 'Project::mcp-app/ui-web.controlcenter'},
+              {project: 'Project::mcp-legacy/sessionsuche'},
+              {project: 'Project::mcp-app/api-internal-accesscontrol'},
+              {project: 'Project::Docker Images'},
+              {project: 'Project::mcp-app/ui-admin-finance'},
+              {project: 'Project::RedLabConnect'},
+              {project: 'Project::Pci Tickets'},
+              {project: 'Project::mcp-legacy/nicolopignatelli-valueobejcts'},
+              {project: 'Project::Allgemein'},
+              {project: 'Project::mcp-app/api-internal-debit'},
+              {project: 'Project::mcp-app/api-finance-sepaservice'},
+              {project: 'Project::mcp-module/payment-debit'},
+              {project: 'Project::mcp-lib/util-administered'},
+              {project: 'Project::mcp-module/custom-drk'},
+              {project: 'Project::mcp-module/service-dtiimport'},
+              {project: 'Project::mcp-app/ui-fundraising-custom-whh'},
+              {project: 'Project::mcp-app/api-internal-paypal'},
+              {project: 'Project::mcp-lib/integration-paypal-service'},
+              {project: 'Project::mcp-lib/integration-paypal-persistence'},
+              {project: 'Project::mcp-app/api-internal-accouting'},
+              {project: 'Project::PCI/Proxy'},
+              {project: 'Project::PCI/Vault'},
+              {project: 'Project::PCI/SepaUi'},
+              {project: 'Project::PCI/Sessionsearch'},
+              {project: 'Project::PCI/Sessiontransfer'},
+              {project: 'Project::PCI/Soap-WS'},
+              {project: 'Project::Sofort'},
+              {project: 'Project::Vorkasse'},
+              {project: 'Project::WHH'},
           ])
 
           let prios = reactive(
@@ -51,7 +97,6 @@
             {prio: 'prio 2'},
             {prio: 'prio 3'},
             {prio: 'prio 4'},
-            {prio: 'prio 5'}
           ]
           )
 
@@ -61,92 +106,95 @@
             { item: 'B', name: t('unplanned') },
           ]
 
+          const description = (e) => {
+              form.description = e.target.value
+          }
+
+          const onSubmit = (e) => {
+              e.preventDefault();
+          }
+
 </script>
+
 <template>
    <div class="main">
         <div class="inside">
             <div>
                 <b-form>
+                    <!-- -->
                     <div class="row">
-
                         <div class="col-md-6">
-                            <b-form-group id="input-group-1" :label="$t('ticketNumber')" label-for="input-1">
+                            <Form :label="$t('ticketNumber')">
                                 <input type="string" :value="form.ticket" disabled required />
-                            </b-form-group>
+                            </Form>
                         </div>
-
                         <div class="col-md-6">
-                            <b-form-group id="input-group-2" :label="$t('from')" label-for="input-1">
+                            <Form :label="$t('from')">
                                 <input type="string" :value="form.from" disabled required />
-                            </b-form-group>
+                            </Form>
                         </div>
                     </div>
-
+                    <!-- -->
                     <div class="row">
                         <div class="col-md-6">
-                            <b-form-group id="input-group-1" :label="$t('description')" label-for="input-1">
+                            <Form :label="$t('description')">
                                 <textarea type="string" @input="description" :value="form.description" required />
-                            </b-form-group>
+                            </Form>
                         </div>
-
-                      <div class="col-md-6">
-                        <label for="team">{{$t('team')}}</label>
-                        <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
-                      </div>
-                    </div>
-
-                    <div class="row">
-
-                      <div class="col-md-6">
-                        <label for="team">{{$t('project')}}</label>
-                        <Dropdown class="label-team-two" v-model="selectedProject" :options="projects" optionLabel="project" :filter="true" placeholder="Select a project" :showClear="true">
-                          <template #value="slotProps">
-                            <div class="p-dropdown-car-value" v-if="slotProps.value">
-                              <span>{{slotProps.value.project}}</span>
-                            </div>
-                            <span v-else>
-                                        {{slotProps.placeholder}}
-                                    </span>
-                          </template>
-                          <template  #option="slotProps">
-                            <div class="p-dropdown-car-option okay">
-                              <span>{{slotProps.option.project}}</span>
-                            </div>
-                          </template>
-                        </Dropdown>
-                      </div>
-
-
                         <div class="col-md-6">
-                          <label for="team">{{$t('priority')}}</label>
-                          <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="prio" placeholder="Select priority" />
+                          <Form :label="$t('Teams')">
+                                 <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
+                          </Form>
                         </div>
-
                     </div>
-
+                    <!-- -->
+                    <div class="row">
+                        <div class="col-md-6">
+                              <Form :label="$t('project')">
+                                <Dropdown class="label-team-two" v-model="selectedProject" :options="projects" optionLabel="project" :filter="true" placeholder="Select a project" :showClear="true">
+                                  <template #value="slotProps">
+                                    <div class="p-dropdown-car-value" v-if="slotProps.value">
+                                      <span>{{slotProps.value.project}}</span>
+                                    </div>
+                                    <span v-else>
+                                                {{slotProps.placeholder}}
+                                            </span>
+                                  </template>
+                                  <template  #option="slotProps">
+                                    <div class="p-dropdown-car-option okay">
+                                      <span>{{slotProps.option.project}}</span>
+                                    </div>
+                                  </template>
+                                </Dropdown>
+                              </Form>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="prio">{{$t('priority')}}</label>
+                            <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="prio" placeholder="Select priority">
+                                <template #option="props">
+                                    <GitlabLabel state="Prio" :value="props.option.prio" :color="props.option.color"/>
+                                </template>
+                            </Dropdown>
+                        </div>
+                    </div>
+                    <!-- -->
                     <div class="row project">
-
-                      <div class="col-md-6">
-                        <label for="team">{{$t('status')}}</label>
-                        <b-form-radio-group
-                            v-model="selected"
-                            :options="options"
-                            class="mb-3"
-                            value-field="item"
-                            text-field="name"
-                            disabled-field="notEnabled"
-                        ></b-form-radio-group>
+                        <div class="col-md-12">
+                            <label for="team">{{$t('status')}}</label>
+                            <b-form-radio-group  v-model="selected"  :options="options" class="mb-3" value-field="item" text-field="name" disabled-field="notEnabled"></b-form-radio-group>
                       </div>
                     </div>
 
+                    <!-- The input -->
+
+
+                    <!-- -->
                     <div class="row">
                         <div class="col-md-12 mt-10 text-center">
-                             <b-button @click="onSubmit" class="save" type="submit" >{{$t('submit')}}</b-button>
-                             <b-button @click="onReset" class="cancel" type="reset">{{$t('cancel')}}</b-button>
+                            <Button class="save" @click="onSubmit">{{$t('submit')}}</Button>
+                            <Button class="cancel" @click="onReset">{{$t('cancel')}}</Button>
                         </div>
-
                     </div>
-
                 </b-form>
             </div>
         </div>
@@ -204,11 +252,7 @@
             background-color: transparent;
             color: #4B6587;
         }
-        label {
-            margin-bottom: .5rem;
-            font-weight: 800;
-            color: #4B6587;
-        }
+
 
         .project {
             margin-top: 1rem;
@@ -219,15 +263,6 @@
             height: 100%;
             margin: 0rem 1rem;
         }
-
-
-      .green {
-        background: green;
-      }
-      .blue {
-        background: blue!important;
-        padding: 1rem;
-      }
         
     }
 

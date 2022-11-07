@@ -2,7 +2,7 @@
 <template>
    <div class="main">
         <div class="inside">
-
+            
         </div>
    </div>
 </template>

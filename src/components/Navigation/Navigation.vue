@@ -1,6 +1,6 @@
 <script setup>
     import {ref} from "vue";
-    import i18n from '../../../i18n';
+    import i18n from '../../i18n.js';
     const {locale} = i18n.global;
 
     let navMenu = ref(false);
@@ -19,9 +19,7 @@
         <div class="row">
             <div class="main__inside d-flex align-items-center">
                 <div class="col-1">
-                    <p>
-                        Red Lab
-                    </p>
+                    <font-awesome-icon class="flask-icon" icon="fas fa-flask" />
                 </div>
                 <div class="col-7 input-field">
                     <input :placeholder="$t('searchTicket')" /> 
@@ -67,6 +65,9 @@
 
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
+        .flask-icon {
+            font-size: 2rem;
+        }
         .Navigation {
             font-family: $font;
         }
