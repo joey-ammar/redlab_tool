@@ -4,6 +4,8 @@
           const {t} = i18n.global;
           import Form from "../Form/Form.vue"
           import Button from "../Button/Button.vue"
+          import GitlabPrio from "../GitLabPrio/GitlabPrio.vue"
+
           const form = reactive({
             ticket: '#21423',
             from: 'Joey',
@@ -15,6 +17,7 @@
           let selectedTeam =  ref(null);
           let selectedPrio =  ref(null);
           let selectedProject = ref(null);
+          let selectedProjectNames = ref(null);
 
           let teams = reactive(
             [
@@ -91,13 +94,15 @@
               {project: 'Project::WHH'},
           ])
 
+
+
           let prios = reactive(
-          [
-            {prio: 'prio 1'},
-            {prio: 'prio 2'},
-            {prio: 'prio 3'},
-            {prio: 'prio 4'},
-          ]
+              [
+                  {prio: 'prio', number: '1',  color: 'green', status: 'prio 1'},
+                  {prio: 'prio', number: '2',  color: 'purple', status: 'prio 2'},
+                  {prio: 'prio', number: '3',  color: 'orange', status: 'prio 3'},
+                  {prio: 'prio', number: '4',  color: 'blue', status: 'prio 4'},
+              ]
           )
 
           let  selected = 'A';
@@ -170,12 +175,34 @@
                         </div>
                         <div class="col-md-6">
                             <label for="prio">{{$t('priority')}}</label>
-                            <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="prio" placeholder="Select priority">
+                            <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="number" placeholder="Select priority">
                                 <template #option="props">
-                                    <GitlabLabel state="Prio" :value="props.option.prio" :color="props.option.color"/>
+                                    <GitlabPrio state="Prio" :value="props.option.prio" :color="props.option.color" :number="props.option.number"/>
                                 </template>
                             </Dropdown>
                         </div>
+                    </div>
+
+                    <div class="row">
+                       <div class="col-md-6">
+                           <Form :label="$t('projectName')">
+                               <Dropdown class="label-team-two" v-model="selectedProjectNames" :options="projectsNames" optionLabel="projectsNames" :filter="true" placeholder="Select a project Name" :showClear="true">
+                                   <template #value="slotProps">
+                                       <div class="p-dropdown-car-value" v-if="slotProps.value">
+                                           <span>{{slotProps.value.project}}</span>
+                                       </div>
+                                       <span v-else>
+                                           {{slotProps.placeholder}}
+                                       </span>
+                                   </template>
+                                   <template  #option="slotProps">
+                                       <div class="p-dropdown-car-option okay">
+                                           <span>{{slotProps.option.project}}</span>
+                                       </div>
+                                   </template>
+                               </Dropdown>
+                           </Form>
+                       </div>
                     </div>
                     <!-- -->
                     <div class="row project">

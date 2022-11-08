@@ -13,5 +13,6 @@
     "save": "Save",
     "cancel": "Cancel",
     "planned": "Planned",
-    "unplanned" : "Unplanned"
+    "unplanned" : "Unplanned",
+    "projectName": "Project Name"
 }

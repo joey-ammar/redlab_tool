@@ -13,5 +13,6 @@
     "save": "Speichern",
     "cancel": "Stornieren",
     "planned": "geplant",
-    "unplanned" : "ungeplant"
+    "unplanned" : "ungeplant",
+    "projectName": "Projektname"
 }
