@@ -1,15 +1,15 @@
 <script setup>
     const props = defineProps({
         color: '',
-        value: null,
-        number: null
+        prefix: null,
+        value: null
     })
 </script>
 
 <template>
    <div class="bg" :style="{backgroundColor: props.color}">
-       <span class="prio">{{props.value}}</span>
-       <span class="num">{{props.number}}</span>
+       <span class="prio">{{props.prefix}}</span>
+       <span class="num">{{props.value}}</span>
    </div>
 </template>
 

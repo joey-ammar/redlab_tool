@@ -5,6 +5,7 @@
           import Form from "../Form/Form.vue"
           import Button from "../Button/Button.vue"
           import GitlabPrio from "../GitLabPrio/GitlabPrio.vue"
+          import GitlabLabel from "../GitLabLabel/GitLabLabel.vue"
 
           const form = reactive({
             ticket: '#21423',
@@ -19,15 +20,7 @@
           let selectedProject = ref(null);
           let selectedProjectNames = ref(null);
 
-          let teams = reactive(
-            [
-                {team: 'Team::Abrechnung'},
-                {team: 'Team::Controlcenter'},
-                {team: 'Team::Kreditkarte'},
-                {team: 'Team::Senacor'},
-                {team: 'Team::Sepa'}
-             ]
-          )
+
 
           let projects = reactive([
                 {project: 'Project::Abrechnung'},
@@ -98,14 +91,25 @@
 
           let prios = reactive(
               [
-                  {prio: 'prio', number: '1',  color: 'green', status: 'prio 1'},
-                  {prio: 'prio', number: '2',  color: 'purple', status: 'prio 2'},
-                  {prio: 'prio', number: '3',  color: 'orange', status: 'prio 3'},
-                  {prio: 'prio', number: '4',  color: 'blue', status: 'prio 4'},
+                  {prefix: 'prio', value: '1',  color: 'green', status: 'prio 1'},
+                  {prefix: 'prio', value: '2',  color: 'purple', status: 'prio 2'},
+                  {prefix: 'prio', value: '3',  color: 'orange', status: 'prio 3'},
+                  {prefix: 'prio', value: '4',  color: 'blue', status: 'prio 4'},
+              ]
+          )
+
+          let teams = reactive(
+              [
+                  {prefix: 'Team::Abrechnung'},
+                  {prefix: 'Team::Controlcenter'},
+                  {prefix: 'Team::Kreditkarte'},
+                  {prefix: 'Team::Senacor'},
+                  {prefix: 'Team::Sepa'}
               ]
           )
 
           let  selected = 'A';
+
           let options = [
             { item: 'A', name: t('planned') },
             { item: 'B', name: t('unplanned') },
@@ -147,9 +151,14 @@
                             </Form>
                         </div>
                         <div class="col-md-6">
-                          <Form :label="$t('Teams')">
-                                 <Dropdown id="team" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="team" placeholder="Select a Team" />
-                          </Form>
+                            <!--<GitlabPrio state="Prio" :prefix="props.option.prefix" :color="props.option.color" :value="props.option.value"/>-->
+                            <label for="prio">{{$t('Team')}}</label>
+                            <Dropdown id="teams" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="prefix" placeholder="Select Teams">
+                                <template #option="props">
+                                    <gitlab-label :prefix="props.option.prefix"/>
+                                </template>
+                            </Dropdown>
+
                         </div>
                     </div>
                     <!-- -->
@@ -162,8 +171,8 @@
                                       <span>{{slotProps.value.project}}</span>
                                     </div>
                                     <span v-else>
-                                                {{slotProps.placeholder}}
-                                            </span>
+                                        {{slotProps.placeholder}}
+                                    </span>
                                   </template>
                                   <template  #option="slotProps">
                                     <div class="p-dropdown-car-option okay">
@@ -175,9 +184,9 @@
                         </div>
                         <div class="col-md-6">
                             <label for="prio">{{$t('priority')}}</label>
-                            <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="number" placeholder="Select priority">
+                            <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="status" placeholder="Select priority">
                                 <template #option="props">
-                                    <GitlabPrio state="Prio" :value="props.option.prio" :color="props.option.color" :number="props.option.number"/>
+                                    <GitlabPrio state="Prio" :prefix="props.option.prefix" :color="props.option.color" :value="props.option.value"/>
                                 </template>
                             </Dropdown>
                         </div>
