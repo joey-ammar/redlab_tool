@@ -17,7 +17,7 @@
         box-sizing: border-box;
         text-decoration: none;
     }
-    /*1rem = 16px*/
+
     html {
         font-size: 62.5%;
 

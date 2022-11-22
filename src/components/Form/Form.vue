@@ -16,7 +16,8 @@ const props = defineProps({
     @import '../../sass/variables.scss';
     label {
         margin-bottom: .5rem;
-        font-weight: 800;
+        font-weight: 500;
         color: #4B6587;
+        font-size: 1.7rem;
     }
 </style>

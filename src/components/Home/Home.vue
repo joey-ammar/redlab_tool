@@ -132,38 +132,44 @@
                 <b-form>
                     <!-- -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <!-- Ticket number -->
+                        <div class="col-6">
                             <Form :label="$t('ticketNumber')">
                                 <input type="string" :value="form.ticket" disabled required />
                             </Form>
                         </div>
-                        <div class="col-md-6">
+                        <!-- FROM -->
+                        <div class="col-6">
                             <Form :label="$t('from')">
                                 <input type="string" :value="form.from" disabled required />
                             </Form>
                         </div>
                     </div>
-                    <!-- -->
+
                     <div class="row">
-                        <div class="col-md-6">
+                        <!-- Description -->
+                        <div class="col-6">
                             <Form :label="$t('description')">
                                 <textarea type="string" @input="description" :value="form.description" required />
                             </Form>
                         </div>
-                        <div class="col-md-6">
+                        <!-- Team -->
+                        <div class="col-6">
                             <!--<GitlabPrio state="Prio" :prefix="props.option.prefix" :color="props.option.color" :value="props.option.value"/>-->
-                            <label for="prio">{{$t('Team')}}</label>
-                            <Dropdown id="teams" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="prefix" placeholder="Select Teams">
-                                <template #option="props">
-                                    <gitlab-label :prefix="props.option.prefix"/>
-                                </template>
-                            </Dropdown>
+                            <Form :label="$t('Team')">
+                                <Dropdown id="teams" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="prefix" placeholder="Select Teams">
+                                    <template #option="props">
+                                        <span>{{props.option.prefix}}</span>
+                                    </template>
+                                </Dropdown>
+                            </Form>
 
                         </div>
                     </div>
                     <!-- -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <!-- Project -->
+                        <div class="col-6">
                               <Form :label="$t('project')">
                                 <Dropdown class="label-team-two" v-model="selectedProject" :options="projects" optionLabel="project" :filter="true" placeholder="Select a project" :showClear="true">
                                   <template #value="slotProps">
@@ -182,18 +188,20 @@
                                 </Dropdown>
                               </Form>
                         </div>
-                        <div class="col-md-6">
-                            <label for="prio">{{$t('priority')}}</label>
-                            <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="status" placeholder="Select priority">
-                                <template #option="props">
-                                    <GitlabPrio state="Prio" :prefix="props.option.prefix" :color="props.option.color" :value="props.option.value"/>
-                                </template>
-                            </Dropdown>
+                        <!-- Priority -->
+                        <div class="col-6">
+                            <Form :label="$t('priority')">
+                                <Dropdown id="prio" class="label-team" v-model="selectedPrio" :options="prios" optionLabel="status" placeholder="Select priority">
+                                    <template #option="props">
+                                        <GitlabPrio state="Prio" :prefix="props.option.prefix" :color="props.option.color" :value="props.option.value"/>
+                                    </template>
+                                </Dropdown>
+                            </Form>
                         </div>
                     </div>
 
                     <div class="row">
-                       <div class="col-md-6">
+                       <div class="col-6">
                            <Form :label="$t('projectName')">
                                <Dropdown class="label-team-two" v-model="selectedProjectNames" :options="projectsNames" optionLabel="projectsNames" :filter="true" placeholder="Select a project Name" :showClear="true">
                                    <template #value="slotProps">
@@ -213,18 +221,13 @@
                            </Form>
                        </div>
                     </div>
-                    <!-- -->
                     <div class="row project">
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <label for="team">{{$t('status')}}</label>
                             <b-form-radio-group  v-model="selected"  :options="options" class="mb-3" value-field="item" text-field="name" disabled-field="notEnabled"></b-form-radio-group>
                       </div>
                     </div>
 
-                    <!-- The input -->
-
-
-                    <!-- -->
                     <div class="row">
                         <div class="col-md-12 mt-10 text-center">
                             <Button class="save" @click="onSubmit">{{$t('submit')}}</Button>
@@ -238,9 +241,11 @@
 </template>
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
-
+    span, input, textarea, .label-team {
+        font-size: 2rem;
+    }
     .main {
-        margin-top: 10rem;
+        margin-top: 20rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -250,16 +255,15 @@
         input, select, .label-team, textarea,
         .label-team-two {
             width: 100%;
-            padding: 1.5rem 0rem 1.5rem 1rem;
+            padding: 2.5rem 0rem 2.5rem 1rem;
             border: 1px solid #DFDFDE;
             background-color: #DFDFDE;
             border-radius: 5px;
             outline: none;
-            font-size: 1.2rem;
         }
 
         textarea {
-            padding: 1rem 0rem 1rem 1rem;
+            padding: 2.5rem 0rem 2.2rem 1rem;
         }
 
         #input-group-1,
@@ -275,7 +279,7 @@
             color: white;
             padding: 1rem 2rem;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.7rem;
             cursor: pointer;
             font-weight: 800;
             border: 1px solid #4B6587;

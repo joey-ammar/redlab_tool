@@ -16,6 +16,7 @@
 <style scoped lang="scss">
 
 .bg {
+    font-size: 1.7rem;
     display: inline-block;
     border-radius: 1rem;
     color: white;

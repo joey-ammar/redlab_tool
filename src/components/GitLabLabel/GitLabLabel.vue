@@ -5,11 +5,13 @@
 </script>
 <template>
     <div class="bg">
-        <span class="prio">{{props.prefix}}</span>
+        <span>{{props.prefix}}</span>
     </div>
 </template>
 
 <style scoped lang="scss">
 @import '../../sass/variables.scss';
-
+    span {
+        font-size: 1.7rem;
+    }
 </style>

@@ -12,20 +12,25 @@
     const closeNav = () => {
         navMenu.value = false;
     }
+
 </script>
 
 <template>
      <div class="Navigation">
         <div class="row">
             <div class="main__inside d-flex align-items-center">
+
                 <div class="col-1">
                     <font-awesome-icon class="flask-icon" icon="fas fa-flask" />
                 </div>
+
                 <div class="col-7 input-field">
                     <input :placeholder="$t('searchTicket')" /> 
                     <font-awesome-icon class="icon" icon="fa-solid fa-magnifying-glass" />
                 </div>
+
                 <div class="col-1 remove-in-small"></div>
+
                 <div class="col-3 d-flex justify-content-around btns">
                     <div class="col-1">
                         <router-link to="/"><a class="btn1">{{$t('Home')}} </a></router-link>
@@ -40,10 +45,12 @@
                         </select>
                     </div>
                     
-                </div>    
+                </div>
+
                 <div class="col-1 bars">
                     <font-awesome-icon @click="openMenu" icon="fa-solid fa-bars" />
-                </div> 
+                </div>
+
             </div>
         </div>
      </div>
@@ -65,32 +72,34 @@
 
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
-        .flask-icon {
-            font-size: 2rem;
-        }
+
         .Navigation {
             font-family: $font;
         }
+
+        .flask-icon {
+            font-size: 3rem;
+            margin-left: 2rem;
+        }
+
         .main__inside {
-            height: 10vh;
+            height: 15vh;
             @include width-margin;
-            p {
-                display: inline-block;
-                font-size: 1.5rem;
-                font-weight: 800;
-                margin-top: .6rem;
-                color: #4B6587;
-            }
+
             .input-field {
+
                 position: relative;
+
                 input {
+                    font-size: 1.7rem;
                     width: 100%;
-                    padding: 1.5rem 1rem;
+                    padding: 2.5rem 1rem;
                     border: 1px solid #C8C6C6;
                     background-color: #C8C6C6;
                     border-radius: 5px;
                     outline: none;
                 }
+
                 .icon {
                     position: absolute;
                     right: 2rem;
@@ -100,18 +109,19 @@
                 }
             }
 
-            .btn1, .btn2 {
+            .btn1,
+            .btn2,
+            select {
                 color: #4B6587;
-                font-size: 1rem;
+                font-size: 1.7rem;
                 font-weight: 800;
             }
 
             select {
-                color: #4B6587;
                 border:0;
                 background:none;
                 outline: none;
-                font-size: 1.4rem;
+                margin-top: .4rem;
             }
 
         }
@@ -156,6 +166,11 @@
             }
         }
 
+        /*
+            **************++
+            ***************
+            Media
+        */
 
         @media (max-width: 575.98px) {
             .main__inside { 
