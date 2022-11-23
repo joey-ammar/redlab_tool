@@ -78,28 +78,24 @@
         }
 
         .flask-icon {
-            font-size: 3rem;
-            margin-left: 2rem;
+            font-size: 2rem;
+            margin-left: 1rem;
         }
 
         .main__inside {
             height: 15vh;
             @include width-margin;
-
             .input-field {
-
                 position: relative;
-
                 input {
                     font-size: 1.7rem;
                     width: 100%;
-                    padding: 2.5rem 1rem;
+                    padding: 1.5rem;
                     border: 1px solid #C8C6C6;
                     background-color: #C8C6C6;
                     border-radius: 5px;
                     outline: none;
                 }
-
                 .icon {
                     position: absolute;
                     right: 2rem;
@@ -113,7 +109,7 @@
             .btn2,
             select {
                 color: #4B6587;
-                font-size: 1.7rem;
+                font-size: 1.5rem;
                 font-weight: 800;
             }
 

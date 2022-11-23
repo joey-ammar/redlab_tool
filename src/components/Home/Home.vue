@@ -5,7 +5,8 @@
           import Form from "../Form/Form.vue"
           import Button from "../Button/Button.vue"
           import GitlabPrio from "../GitLabPrio/GitlabPrio.vue"
-          import GitlabLabel from "../GitLabLabel/GitLabLabel.vue"
+          import RadioButton from 'primevue/radiobutton';
+          import {BPlaceholder} from "bootstrap-vue-3";
 
           const form = reactive({
             ticket: '#21423',
@@ -19,8 +20,6 @@
           let selectedPrio =  ref(null);
           let selectedProject = ref(null);
           let selectedProjectNames = ref(null);
-
-
 
           let projects = reactive([
                 {project: 'Project::Abrechnung'},
@@ -158,7 +157,7 @@
                             <!--<GitlabPrio state="Prio" :prefix="props.option.prefix" :color="props.option.color" :value="props.option.value"/>-->
                             <Form :label="$t('Team')">
                                 <Dropdown id="teams" class="label-team" v-model="selectedTeam" :options="teams" optionLabel="prefix" placeholder="Select Teams">
-                                    <template #option="props">
+                                    <template  #option="props">
                                         <span>{{props.option.prefix}}</span>
                                     </template>
                                 </Dropdown>
@@ -223,8 +222,9 @@
                     </div>
                     <div class="row project">
                         <div class="col-12">
-                            <label for="team">{{$t('status')}}</label>
-                            <b-form-radio-group  v-model="selected"  :options="options" class="mb-3" value-field="item" text-field="name" disabled-field="notEnabled"></b-form-radio-group>
+                            <label>{{$t('status')}}</label>
+                            <b-form-radio-group v-model="selected"  :options="options" class="mb-3" value-field="item" text-field="name" disabled-field="notEnabled"></b-form-radio-group>
+
                       </div>
                     </div>
 
@@ -241,11 +241,8 @@
 </template>
 <style scoped lang="scss">
     @import '../../sass/variables.scss';
-    span, input, textarea, .label-team {
-        font-size: 2rem;
-    }
     .main {
-        margin-top: 20rem;
+        margin-top: 10rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -255,15 +252,16 @@
         input, select, .label-team, textarea,
         .label-team-two {
             width: 100%;
-            padding: 2.5rem 0rem 2.5rem 1rem;
+            padding: 1rem;
             border: 1px solid #DFDFDE;
             background-color: #DFDFDE;
             border-radius: 5px;
             outline: none;
+            font-size: 1.5rem;
         }
 
-        textarea {
-            padding: 2.5rem 0rem 2.2rem 1rem;
+        .label-team {
+            font-size: 1rem;
         }
 
         #input-group-1,
@@ -279,7 +277,7 @@
             color: white;
             padding: 1rem 2rem;
             border-radius: 5px;
-            font-size: 1.7rem;
+            font-size: 1.3rem;
             cursor: pointer;
             font-weight: 800;
             border: 1px solid #4B6587;
@@ -293,17 +291,12 @@
             color: #4B6587;
         }
 
-
         .project {
             margin-top: 1rem;
         }
 
-        .select-prio{
-            width: 100%;
-            height: 100%;
-            margin: 0rem 1rem;
-        }
-        
+
+
     }
 
 </style>

@@ -18,10 +18,6 @@
         text-decoration: none;
     }
 
-    html {
-        font-size: 62.5%;
-
-    }
     body {
         background-color: #F7F6F2!important;
     }

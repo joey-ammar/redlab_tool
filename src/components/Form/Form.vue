@@ -18,6 +18,7 @@ const props = defineProps({
         margin-bottom: .5rem;
         font-weight: 500;
         color: #4B6587;
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
+
 </style>
