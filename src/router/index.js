@@ -5,13 +5,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: import('../components/Home/Home.vue')
+      component: () => import('../view/MainForm.vue')
     },
-    {
-      path: "/settings",
-      name: 'settings',
-      component: import('../components/Settings/Settings.vue')
-    }
   ]
 })
 

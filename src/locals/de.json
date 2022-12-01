@@ -14,5 +14,7 @@
     "cancel": "Stornieren",
     "planned": "geplant",
     "unplanned" : "ungeplant",
-    "projectName": "Projektname"
+    "projectName": "Projektname",
+    "chooseProjectLabel": "Wähle ein Projekt-Label aus ...",
+    "chooseLabel": "Wähle ein Label aus ..."
 }

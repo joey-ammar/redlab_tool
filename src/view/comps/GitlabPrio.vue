@@ -1,20 +1,19 @@
 <script setup>
-    const props = defineProps({
-        color: '',
-        prefix: null,
-        value: null
-    })
+defineProps({
+    color: '',
+    prefix: null,
+    value: null
+})
 </script>
 
 <template>
-   <div class="bg" :style="{backgroundColor: props.color}">
-       <span class="prio">{{props.prefix}}</span>
-       <span class="num">{{props.value}}</span>
+   <div class="bg" :style="{ backgroundColor: color }">
+       <span class="prio">{{ prefix }}</span>
+       <span class="num">{{ value }}</span>
    </div>
 </template>
 
 <style scoped lang="scss">
-
 .bg {
     font-size: 1.3rem;
     display: inline-block;
@@ -31,5 +30,4 @@
         border-radius: 1rem;
     }
 }
-
 </style>
